@@ -12,55 +12,51 @@ body {
 }
 
 /* HEADER */
-.header {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  background: #020617;
-  border-bottom: 1px solid #1e293b;
-  z-index: 1000;
-}
-.header-inner {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  padding: 10px 16px;
-  gap: 16px;
-}
-.logo { font-weight: bold; font-size: 18px; cursor: pointer; white-space: nowrap; }
-
-/* SEARCH TRONG HEADER */
+/* SEARCH TRONG HEADER - ĐÃ FIX TRIỆT ĐỂ */
 .header-search {
-  flex-grow: 1;
-  max-width: 500px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-dark);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0 12px;
+    flex-grow: 1;
+    max-width: 500px;
+    height: 40px;           /* Cố định chiều cao để dễ căn giữa */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0 12px;
+    overflow: hidden;       /* Đảm bảo không có gì tràn ra ngoài */
+    transition: all 0.2s;
 }
 
-/* ICON */
-.header-search svg {
-  width: 18px;
-  height: 18px;
-  color: var(--text-muted);
-  flex-shrink: 0;
+/* ICON - Ép buộc vị trí */
+.header-search svg, 
+.header-search i {
+    width: 18px !important;
+    height: 18px !important;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    display: block;         /* Loại bỏ khoảng trống thừa của inline */
+    margin: 0;              /* Xóa margin mặc định */
 }
 
 /* INPUT */
 .header-search input {
-  flex: 1;
-  padding: 10px 0;
-  border: none;
-  background: transparent;
-  color: white;
-  font-size: 0.95rem;
-  outline: none;
+    flex: 1;
+    height: 100%;           /* Chiếm toàn bộ chiều cao khung search */
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    display: block;
 }
 
+/* Khi nhấn vào ô search thì đổi màu viền */
+.header-search:focus-within {
+    border-color: #3b82f6;
+    background: #1e293b;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
 
 /* NAVIGATION */
 .nav { display: flex; gap: 16px; }
