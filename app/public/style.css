@@ -53,14 +53,21 @@ body {
   border-color: #3b82f6;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
-.header-search i, .header-search svg {
+.header-search i,
+.header-search svg {
   position: absolute;
-  left: 12px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
   pointer-events: none;
 }
+.header-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 
 /* NAVIGATION */
 .nav { display: flex; gap: 16px; }
