@@ -1,114 +1,311 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>Kho file</title>
-  <meta name="description" content="Kho file BuilderTV - tải nhanh, hướng dẫn đầy đủ">
-  <link rel="stylesheet" href="/style.css">
-  	<link rel="apple-touch-icon" sizes="180x180" href="https://hoangtuan.net/images/apple-touch-icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho file | BuilderTV</title>
+    <meta name="description" content="Kho file BuilderTV - tải nhanh, hướng dẫn đầy đủ">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://hoangtuan.net/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hoangtuan.net/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://hoangtuan.net/images/favicon-16x16.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-header: rgba(2, 6, 23, 0.8);
+            --bg-card: #1e293b;
+            --bg-card-hover: #273449;
+            --primary-green: #22c55e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        /* RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-header);
+            backdrop-filter: blur(12px); /* Hiệu ứng kính mờ */
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            height: 64px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: fit-content;
+        }
+
+        /* SEARCH BOX TRÊN HEADER */
+        .header-search {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .header-search input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #0f172a;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .header-search input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+        }
+
+        .header-search i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* NAV */
+        .nav { display: flex; gap: 20px; }
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav a:hover { color: var(--primary-green); }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 100px 16px 40px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* FILE GRID - Tối ưu 1 cột mobile, 2-3 cột PC */
+        #fileList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: var(--primary-green);
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-right: 24px;
+            color: #fff;
+        }
+
+        .code {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: monospace;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 4px 8px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .card-arrow {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+        }
+
+        .card:hover .card-arrow {
+            color: var(--primary-green);
+            transform: translateX(3px);
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 60px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover { color: #fff; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 12px; }
+            .nav { display: none; } /* Ẩn nav trên mobile để dành chỗ cho search */
+            .header-search { margin-right: 0; }
+            h1 { font-size: 1.4rem; }
+            #fileList { grid-template-columns: 1fr; }
+            .container { padding-top: 90px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- 🔷 HEADER -->
 <div class="header">
-  <div class="header-inner">
+    <div class="header-inner">
+        <div class="logo" onclick="location.href='/'">
+            <i data-lucide="package"></i> <span>BuilderTV</span>
+        </div>
 
-    <!-- LOGO -->
-    <div class="logo" onclick="location.href='/'">📦 BuilderTV</div>
+        <div class="header-search">
+            <i data-lucide="search" size="18"></i>
+            <input type="text" id="searchInput" placeholder="Tìm file nhanh..." autocomplete="off"/>
+        </div>
 
-    <!-- 🔍 SEARCH (GMAIL STYLE) -->
-    <div class="header-search">
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="🔍 Tìm file (vd: zalo, v96...)" 
-      />
+        <div class="nav">
+            <a href="https://hoangtuan.net" target="_blank">Trang chủ</a>
+            <a href="https://zalo.me/buildertv" target="_blank">Zalo</a>
+        </div>
     </div>
-
-    <!-- NAV -->
-    <div class="nav">
-      <a href="https://hoangtuan.net" target="_blank">Trang chủ</a>
-      <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a>
-      <a href="https://zalo.me/buildertv" target="_blank">Zalo</a>
-    </div>
-
-  </div>
 </div>
 
 <div class="container">
+    <h1><i data-lucide="folder-open" style="color: var(--primary-green);"></i> Kho file</h1>
 
-  <h1>📦 Kho file</h1>
-
-
-
-  <div id="fileList">
-    <% files.forEach(f => { %>
-      <div 
-        class="card" 
-        data-name="<%= f.name %>" 
-        data-code="<%= f.code %>"
-        onclick="go('<%= f.code %>')"
-      >
-        <h3><%= f.name %></h3>
-        <p class="code">Mã: <%= f.code %></p>
-      </div>
-    <% }) %>
-  </div>
-
+    <div id="fileList">
+        <% files.forEach(f => { %>
+        <div class="card" data-name="<%= f.name %>" data-code="<%= f.code %>" onclick="go('<%= f.code %>')">
+            <h3><%= f.name %></h3>
+            <p class="code">Mã: <%= f.code %></p>
+            <div class="card-arrow">
+                <i data-lucide="chevron-right" size="20"></i>
+            </div>
+        </div>
+        <% }) %>
+    </div>
 </div>
 
-<!-- 🔻 FOOTER -->
 <div class="footer">
-  <div class="container">
-    <p>© 2026 BuilderTV</p>
-    <p>
-      <a href="https://hoangtuan.net" target="_blank">Trang chủ</a> |
-      <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a> |
-      <a href="https://zalo.me/buildertv" target="_blank">Zalo hỗ trợ</a>
-    </p>
-  </div>
+    <div class="container" style="padding:0">
+        <p>&copy; 2026 <strong>BuilderTV</strong>. Phát triển bởi Hoàng Tuấn.</p>
+        <div class="footer-links">
+            <a href="https://hoangtuan.net" target="_blank">Trang chủ</a>
+            <span>|</span>
+            <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a>
+            <span>|</span>
+            <a href="https://zalo.me/buildertv" target="_blank">Zalo hỗ trợ</a>
+        </div>
+    </div>
 </div>
 
 <script>
-// 🚀 remove dấu tiếng Việt
-function removeVietnamese(str) {
-  return str.normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D");
-}
+    // Khởi tạo icon
+    lucide.createIcons();
 
-// 🚀 fuzzy match đơn giản
-function fuzzyMatch(text, keyword) {
-  return text.includes(keyword);
-}
-
-function go(code){
-  window.location.href = "/" + code;
-}
-
-const input = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".card");
-
-input.addEventListener("input", function() {
-  const keywordRaw = this.value.toLowerCase();
-  const keyword = removeVietnamese(keywordRaw);
-
-  cards.forEach(card => {
-    const name = removeVietnamese(card.dataset.name.toLowerCase());
-    const code = card.dataset.code.toLowerCase();
-
-    if (
-      fuzzyMatch(name, keyword) ||
-      fuzzyMatch(code, keyword)
-    ) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
+    // Điều hướng
+    function go(code){
+        window.location.href = "/" + code;
     }
-  });
-});
+
+    // Xử lý tìm kiếm (giữ nguyên logic của bạn nhưng tối ưu tốc độ)
+    function removeVietnamese(str) {
+        return str.normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/đ/g, "d")
+            .replace(/Đ/g, "D");
+    }
+
+    const input = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+
+    input.addEventListener("input", function() {
+        const keyword = removeVietnamese(this.value.toLowerCase().trim());
+
+        cards.forEach(card => {
+            const name = removeVietnamese(card.dataset.name.toLowerCase());
+            const code = card.dataset.code.toLowerCase();
+
+            if (name.includes(keyword) || code.includes(keyword)) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
 </script>
 
 </body>
