@@ -170,14 +170,84 @@
         margin-top: 8px;
     }
 
-    /* FOOTER */
+    /* 🔻 FOOTER CHUYÊN NGHIỆP */
+.footer {
+    margin-top: 80px;
+    padding: 60px 20px 30px;
+    background: #020617; /* Đậm cùng màu với Header */
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Các link trong footer */
+.footer-links {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+    transform: translateY(-2px);
+}
+
+/* Đường kẻ phân cách nhẹ */
+.footer-divider {
+    width: 100%;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* Bản quyền */
+.footer-info {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.footer-info strong {
+    color: #fff;
+}
+
+.footer-info p:last-child {
+    margin-top: 8px;
+    opacity: 0.7;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
     .footer {
-        margin-top: 60px;
-        padding: 40px 20px;
-        border-top: 1px solid var(--border);
-        text-align: center;
-        color: var(--text-muted);
+        padding: 40px 20px 20px;
     }
+    .footer-links {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
     /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
@@ -226,18 +296,29 @@
     </div>
 </div>
 
-<div class="footer">
-    <div class="container" style="padding:0">
-        <p>&copy; 2026 <strong>BuilderTV</strong>. Phát triển bởi Hoàng Tuấn.</p>
+<footer class="footer">
+    <div class="footer-inner">
         <div class="footer-links">
-            <a href="https://hoangtuan.net" target="_blank">Trang chủ</a>
-            <span>|</span>
-            <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a>
-            <span>|</span>
-            <a href="https://zalo.me/buildertv" target="_blank">Zalo hỗ trợ</a>
+            <a href="https://hoangtuan.net" target="_blank">
+                <i data-lucide="globe" size="18"></i> Trang chủ
+            </a>
+            <a href="https://www.youtube.com/@BuilderTV" target="_blank">
+                <i data-lucide="youtube" size="18"></i> YouTube
+            </a>
+            <a href="https://zalo.me/buildertv" target="_blank">
+                <i data-lucide="message-circle" size="18"></i> Zalo hỗ trợ
+            </a>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-info">
+            <p>&copy; 2026 <strong>BuilderTV</strong>. Tất cả quyền được bảo lưu.</p>
+            <p>Sản phẩm được phát triển bởi <span style="color: var(--primary-green);">Hoàng Tuấn</span>.</p>
         </div>
     </div>
-</div>
+</footer>
+
 
 <script>
     // Khởi tạo icon
