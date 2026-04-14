@@ -23,82 +23,65 @@
             --border: #334155;
         }
 
-        /* RESET */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --border: #334155;
+  --text-muted: #94a3b8;
+  --bg-dark: #0f172a;
+}
+body {
+  background: var(--bg-dark);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-        body {
-            background: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
+/* HEADER */
+/* SEARCH TRONG HEADER - ĐÃ FIX TRIỆT ĐỂ */
+.header-search {
+    flex-grow: 1;
+    max-width: 500px;
+    height: 40px;           /* Cố định chiều cao để dễ căn giữa */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0 12px;
+    overflow: hidden;       /* Đảm bảo không có gì tràn ra ngoài */
+    transition: all 0.2s;
+}
 
-        /* HEADER */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--bg-header);
-            backdrop-filter: blur(12px); /* Hiệu ứng kính mờ */
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-        }
+/* ICON - Ép buộc vị trí */
+.header-search svg, 
+.header-search i {
+    width: 18px !important;
+    height: 18px !important;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    display: block;         /* Loại bỏ khoảng trống thừa của inline */
+    margin: 0;              /* Xóa margin mặc định */
+}
 
-        .header-inner {
-            max-width: 1100px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 16px;
-            height: 64px;
-        }
+/* INPUT */
+.header-search input {
+    flex: 1;
+    height: 100%;           /* Chiếm toàn bộ chiều cao khung search */
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    display: block;
+}
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: fit-content;
-        }
-
-        /* SEARCH BOX TRÊN HEADER */
-        .header-search {
-            flex-grow: 1;
-            max-width: 500px;
-            margin: 0 20px;
-            position: relative;
-        }
-
-        .header-search input {
-            width: 100%;
-            padding: 10px 16px 10px 40px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: #0f172a;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        .header-search input:focus {
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
-        }
-
-        .header-search i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
+/* Khi nhấn vào ô search thì đổi màu viền */
+.header-search:focus-within {
+    border-color: #3b82f6;
+    background: #1e293b;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
 
         /* NAV */
         .nav { display: flex; gap: 20px; }
