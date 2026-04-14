@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kho file</title>
+  <meta name="description" content="Kho file BuilderTV - tải nhanh, hướng dẫn đầy đủ">
+  <link rel="stylesheet" href="/style.css">
+  	<link rel="apple-touch-icon" sizes="180x180" href="https://hoangtuan.net/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hoangtuan.net/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://hoangtuan.net/images/favicon-16x16.png">
+</head>
+<body>
+
+<!-- 🔷 HEADER -->
+<div class="header">
+  <div class="header-inner">
+
+    <!-- LOGO -->
+    <div class="logo" onclick="location.href='/'">📦 BuilderTV</div>
+
+    <!-- 🔍 SEARCH (GMAIL STYLE) -->
+    <div class="header-search">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="🔍 Tìm file (vd: zalo, v96...)" 
+      />
+    </div>
+
+    <!-- NAV -->
+    <div class="nav">
+      <a href="https://hoangtuan.net" target="_blank">Trang chủ</a>
+      <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a>
+      <a href="https://zalo.me/buildertv" target="_blank">Zalo</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <h1>📦 Kho file</h1>
+
+
+
+  <div id="fileList">
+    <% files.forEach(f => { %>
+      <div 
+        class="card" 
+        data-name="<%= f.name %>" 
+        data-code="<%= f.code %>"
+        onclick="go('<%= f.code %>')"
+      >
+        <h3><%= f.name %></h3>
+        <p class="code">Mã: <%= f.code %></p>
+      </div>
+    <% }) %>
+  </div>
+
+</div>
+
+<!-- 🔻 FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p>© 2026 BuilderTV</p>
+    <p>
+      <a href="https://hoangtuan.net" target="_blank">Trang chủ</a> |
+      <a href="https://www.youtube.com/@BuilderTV" target="_blank">YouTube</a> |
+      <a href="https://zalo.me/buildertv" target="_blank">Zalo hỗ trợ</a>
+    </p>
+  </div>
+</div>
+
+<script>
+// 🚀 remove dấu tiếng Việt
+function removeVietnamese(str) {
+  return str.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+}
+
+// 🚀 fuzzy match đơn giản
+function fuzzyMatch(text, keyword) {
+  return text.includes(keyword);
+}
+
+function go(code){
+  window.location.href = "/" + code;
+}
+
+const input = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".card");
+
+input.addEventListener("input", function() {
+  const keywordRaw = this.value.toLowerCase();
+  const keyword = removeVietnamese(keywordRaw);
+
+  cards.forEach(card => {
+    const name = removeVietnamese(card.dataset.name.toLowerCase());
+    const code = card.dataset.code.toLowerCase();
+
+    if (
+      fuzzyMatch(name, keyword) ||
+      fuzzyMatch(code, keyword)
+    ) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+</script>
+
+</body>
+</html>
