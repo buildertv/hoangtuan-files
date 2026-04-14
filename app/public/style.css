@@ -33,39 +33,32 @@ body {
 .header-search {
   flex-grow: 1;
   max-width: 500px;
-  position: relative;
   display: flex;
   align-items: center;
-}
-.header-search input {
-  width: 100%;
-  padding: 10px 16px 10px 40px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+  gap: 10px;
   background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 12px;
+}
+
+/* ICON */
+.header-search svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* INPUT */
+.header-search input {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
   color: white;
   font-size: 0.95rem;
   outline: none;
-  transition: all 0.2s;
-}
-.header-search input:focus {
-  background: #1e293b;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-.header-search i,
-.header-search svg {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted);
-  pointer-events: none;
-}
-.header-search {
-  position: relative;
-  display: flex;
-  align-items: center;
 }
 
 
